@@ -1,6 +1,8 @@
 import pandas
 import unittest
 import itertools
+import numpy
+import scipy.misc
 
 from rpy2.robjects import r
 from rpy2.robjects import pandas2ri
@@ -151,6 +153,10 @@ class TubeLikelihood(unittest.TestCase):
             0.11, 7.055, 28.219, 56.438, 112.875, 1806
         ]
         succeeded = [0, 1]
+        K = numpy.arange(0, 61)
+        K_factorial = scipy.misc.factorial(K)
+        Threshold = .000000001
+
         for p in [0.05, 0.25, 0.5, 0.75, 1.0]:
             for succ in succeeded:
                 for c in concentrations:
@@ -158,7 +164,7 @@ class TubeLikelihood(unittest.TestCase):
                     row = pandas.Series({
                         'success': succ,
                         'concentration': c})
-                    py_answer = tube_likelihood.prob(row, p)
+                    py_answer = tube_likelihood.prob(row, p, K, K_factorial, Threshold)
                     self.assertAlmostEqual(r_answer, py_answer)
 
 #    def test_optimize_pool(self):
@@ -178,7 +184,8 @@ class TubeLikelihood(unittest.TestCase):
         r_result = r['optimize'](data, run_name)
         # chump off run_name from r result
         r_result = [ float(x) for x in r_result[1:] ]
-        py_result = tube_likelihood.optimize_by_run(data, run_name)
+        likelihoods = tube_likelihood.compute_log_likelihoods(data)
+        py_result = tube_likelihood.optimize_by_run(data, likelihoods, run_name)
         py_result = py_result[['like_non_run', 'like_run', 'like_tot',
                                'psmc_non_run', 'psmc_run', 'psmc_tot']]
         # the orders of there values needs to match (see above)
