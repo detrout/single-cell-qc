@@ -8,7 +8,6 @@ import time
 import pandas
 import scipy.misc
 import scipy.stats
-from math import factorial, log
 from statsmodels.sandbox.stats.multicomp import multipletests
 
 logger = logging.getLogger('tube_likelihood')
