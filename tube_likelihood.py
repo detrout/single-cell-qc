@@ -56,6 +56,9 @@ def read_concentrations(filename):
     return c
 
 def read_quantifications(patterns, tube_type, quantification, concentrations):
+    if patterns is None or len(patterns) == 0:
+        return pandas.DataFrame(columns=['gene_id', quantification])
+
     data = []
     for pattern in patterns:
         filenames = glob(pattern)
