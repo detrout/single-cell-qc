@@ -42,6 +42,9 @@ def main(cmdline=None):
     single = read_quantifications(args.single, 'single', args.quantification, concentrations)
     data = pandas.concat([pool, single])
 
+    if len(data) == 0:
+        parser.error('some libraries need to be specified')
+
     data = log_likelihood(data)
     data = data.sort_values(by="run_LR", ascending=True)
     data = chi(data)
