@@ -14,20 +14,7 @@ from statsmodels.sandbox.stats.multicomp import multipletests
 logger = logging.getLogger('tube_likelihood')
 
 def main(cmdline=None):
-    parser = argparse.ArgumentParser()
-    #parser.add_argument('filename', nargs=1, help='dump file to read')
-    parser.add_argument('-p', '--pool', action='append',
-                        help='pool-split RSEM quantification files')
-    parser.add_argument('-s', '--single', action='append',
-                    help='single-cell RSEM quantification files')
-    parser.add_argument('-c', '--concentrations', required=True,
-                        help='name of file with concentrations for spike ins')
-    parser.add_argument('-o', '--output', help='output name')
-    parser.add_argument('-q', '--quantification', default='FPKM',
-                        help='Which RSEM quantification column to use')
-    parser.add_argument('-v', '--verbose', action='store_true')
-    parser.add_argument('-d', '--debug', action='store_true')
-    
+    parser = make_parser()
     args = parser.parse_args(cmdline)
 
     if args.debug:
@@ -53,6 +40,27 @@ def main(cmdline=None):
         data.to_csv(args.output, sep='\t', index=False)
     else:
         print(data.to_string())
+def make_parser():
+    parser = argparse.ArgumentParser()
+
+    group = parser.add_argument_group('raw RSEM files')
+    group.add_argument('-p', '--pool', action='append',
+                        help='pool-split RSEM quantification files')
+    group.add_argument('-s', '--single', action='append',
+                    help='single-cell RSEM quantification files')
+    group.add_argument('-q', '--quantification', default='FPKM',
+                        help='Which RSEM quantification column to use')
+
+    parser.add_argument('-c', '--concentrations', required=True,
+                        help='name of file with concentrations for spike ins')
+    parser.add_argument('-o', '--output', help='output name')
+    parser.add_argument('--sep', help='quantification file seperator', choices=['\t', ','], default='\t')
+    parser.add_argument('-v', '--verbose', action='store_true')
+    parser.add_argument('-d', '--debug', action='store_true')
+
+    return parser
+
+
 
 def read_concentrations(filename):
     c = pandas.read_csv(filename, sep='\t', header=0)

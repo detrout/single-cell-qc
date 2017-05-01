@@ -11,25 +11,7 @@ from tube_likelihood import read_concentrations
 logger = logging.getLogger('gene_spike_ratio')
 
 def main(cmdline=None):
-    parser = argparse.ArgumentParser()
-    parser.add_argument('filenames', nargs='*', help='merged quantification file to read')
-    parser.add_argument('--rsem', action='append', default=[],
-                        help='name of rsem quantification files ')
-    parser.add_argument('--rsem-library', action='append', default=[],
-                        help='library id for rsem quantification file')
-    parser.add_argument('--pool', action='append', default=[],
-                        help='pool-split library names')
-    parser.add_argument('--single', action='append', default=[],
-                        help='single-cell library names (default)')
-    parser.add_argument('-c', '--concentrations', required=True,
-                        help='name of file with concentrations for spike ins')
-    parser.add_argument('-q', '--rsem-quantification', default='FPKM',
-                        help='Which RSEM quantification column to use')
-    parser.add_argument('-o', '--output', help='output name')
-    parser.add_argument('-v', '--verbose', action='store_true')
-    parser.add_argument('-d', '--debug', action='store_true')
-    parser.add_argument('-s', '--sep', choices=[',','\t'], default='\t')
-    
+    parser = make_parser()
     args = parser.parse_args(cmdline)
 
     if args.debug:
@@ -69,6 +51,29 @@ def main(cmdline=None):
         t = ttest_ind(pool, single, equal_var=False)
         
         print(t)
+
+
+def make_parser():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('filenames', nargs='*', help='merged quantification file to read')
+    parser.add_argument('--rsem', action='append', default=[],
+                        help='name of rsem quantification files ')
+    parser.add_argument('--rsem-library', action='append', default=[],
+                        help='library id for rsem quantification file')
+    parser.add_argument('--pool', action='append', default=[],
+                        help='pool-split library names')
+    parser.add_argument('--single', action='append', default=[],
+                        help='single-cell library names (default)')
+    parser.add_argument('-c', '--concentrations', required=True,
+                        help='name of file with concentrations for spike ins')
+    parser.add_argument('-q', '--rsem-quantification', default='FPKM',
+                        help='Which RSEM quantification column to use')
+    parser.add_argument('-o', '--output', help='output name')
+    parser.add_argument('-v', '--verbose', action='store_true')
+    parser.add_argument('-d', '--debug', action='store_true')
+    parser.add_argument('-s', '--sep', choices=[',','\t'], default='\t')
+
+    return parser
 
 def read_quantifications(filenames, rsem, rsem_ids, quantification, sep):
     data = []
