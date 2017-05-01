@@ -77,17 +77,21 @@ def read_quantifications(patterns, tube_type, quantification, concentrations):
         filenames = glob(pattern)
         for filename in filenames:
             rsem = pandas.read_csv(filename, sep='\t', header=0, usecols=['gene_id', quantification])
-            spikes = concentrations.merge(rsem, how='inner')
-            success = spikes.apply(lambda x: 1 if x[quantification] > 0 else 0, axis=1)
-            spikes = pandas.DataFrame.assign(spikes,
-                                             run=filename,
-                                             tube_type=tube_type,
-                                             success=success,
-            )
-
+            spikes = make_spike_success_table(rsem, concentration, filename, tube_type)
             data.append(spikes)
 
     return pandas.concat(data)
+
+
+def make_spike_success_table(library_data, concentrations, run_name, tube_type):
+    spikes = concentrations.merge(library_data, how='inner', left_index=True, right_index=True)
+    success = spikes[run_name] > 0
+    spikes = pandas.DataFrame.assign(spikes,
+                                     run=run_name,
+                                     tube_type=tube_type,
+                                     success=success,
+    )
+    return spikes
 
 def log_likelihood(data, data_runs=None):
     results = []
