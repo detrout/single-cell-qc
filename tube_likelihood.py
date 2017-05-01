@@ -177,7 +177,7 @@ def chi(data):
     data['vchi'] = vchi
     data['vadj'] = vadj
     # 
-    return data.sort_values(by=['vadj'], kind='mergesort')
+    return data.sort_values(by=['vadj','vchi', ], kind='mergesort')
     
 if __name__ == "__main__":
     main()
