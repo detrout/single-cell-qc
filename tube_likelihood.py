@@ -11,18 +11,14 @@ import scipy.misc
 import scipy.stats
 from statsmodels.sandbox.stats.multicomp import multipletests
 
+from singleqc import configure_logging, read_concentrations
+
 logger = logging.getLogger('tube_likelihood')
 
 def main(cmdline=None):
     parser = make_parser()
     args = parser.parse_args(cmdline)
-
-    if args.debug:
-        logging.basicConfig(level=logging.DEBUG)
-    elif args.verbose:
-        logging.basicConfig(level=logging.INFO)
-    else:
-        logging.basicConfig(level=logging.WARNING)
+    configure_logging(args)
 
     concentrations = read_concentrations(args.concentrations)
     sep = args.sep
@@ -109,9 +105,6 @@ def read_combined_quantification(filename, tube_type, concentrations, sep='\t'):
 
     return pandas.concat(data)
 
-def read_concentrations(filename):
-    c = pandas.read_csv(filename, sep='\t', header=0)
-    return c
 
 def read_rsem_quantifications(patterns, tube_type, quantification, concentrations):
     """Read a specific quantification type column out of RSEM quantification files.

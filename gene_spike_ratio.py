@@ -6,20 +6,14 @@ import logging
 import pandas
 from scipy.stats import ttest_ind
 
-from tube_likelihood import read_concentrations
+from singleqc import configure_logging, read_concentrations
 
 logger = logging.getLogger('gene_spike_ratio')
 
 def main(cmdline=None):
     parser = make_parser()
     args = parser.parse_args(cmdline)
-
-    if args.debug:
-        logging.basicConfig(level=logging.DEBUG)
-    elif args.verbose:
-        logging.basicConfig(level=logging.INFO)
-    else:
-        logging.basicConfig(level=logging.WARNING)
+    configure_logging(args):
 
     if len(args.rsem) != len(args.rsem_library):
         parser.error("every rsem filename must be paired with a library ID")
