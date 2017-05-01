@@ -25,9 +25,16 @@ def main(cmdline=None):
         logging.basicConfig(level=logging.WARNING)
 
     concentrations = read_concentrations(args.concentrations)
-    pool = read_quantifications(args.pool, 'pool', args.quantification, concentrations)
-    single = read_quantifications(args.single, 'single', args.quantification, concentrations)
-    data = pandas.concat([pool, single])
+    sep = args.sep
+
+    data = []
+    pool = read_rsem_quantifications(args.pool, 'pool', args.quantification, concentrations)
+    data.append(pool)
+    single = read_rsem_quantifications(args.single, 'single', args.quantification, concentrations)
+    data.append(single)
+    data.extend(read_combined_quantifications(args.combined_pool, 'pool', concentrations, sep))
+    data.extend(read_combined_quantifications(args.combined_single, 'single', concentrations, sep))
+    data = pandas.concat(data)
 
     if len(data) == 0:
         parser.error('some libraries need to be specified')
@@ -44,6 +51,12 @@ def main(cmdline=None):
 
 def make_parser():
     parser = argparse.ArgumentParser()
+
+    group = parser.add_argument_group('combined quantification file')
+    group.add_argument('--combined-pool', action='append',
+                        help='file with merged pool-split quantifications to read')
+    group.add_argument('--combined-single', action='append',
+                        help='file with merge single cell quantifications to read')
 
     group = parser.add_argument_group('raw RSEM files')
     group.add_argument('-p', '--pool', action='append',
@@ -63,12 +76,46 @@ def make_parser():
     return parser
 
 
+def read_combined_quantifications(filenames, tube_type, concentrations, sep='\t'):
+    """Read several combined quantification files.
+
+    this is a gene_id vs library_id tables, if there is a column named "gene_name" it
+    will be ignored.
+    """
+    data = []
+    for filename in filenames:
+        data.append(read_combined_quantification(filename, tube_type, concentrations, sep))
+
+    return data
+
+
+def read_combined_quantification(filename, tube_type, concentrations, sep='\t'):
+    """Read a combined quantification files gene_id vs library_id
+
+    this is a gene_id vs library_id tables, if there is a column named "gene_name" it
+    will be ignored.
+    """
+    quantifications = pandas.read_csv(filename, sep=sep, header=0, index_col=None)
+    quantifications = quantifications.set_index('gene_id')
+
+    data = []
+    for column in quantifications.columns:
+        if column == 'gene_name':
+            logger.info('Ignoring gene_name column')
+        else:
+            spikes = make_spike_success_table(
+                quantifications[column].to_frame(column), concentrations, column, tube_type)
+            data.append(spikes)
+
+    return pandas.concat(data)
 
 def read_concentrations(filename):
     c = pandas.read_csv(filename, sep='\t', header=0)
     return c
 
-def read_quantifications(patterns, tube_type, quantification, concentrations):
+def read_rsem_quantifications(patterns, tube_type, quantification, concentrations):
+    """Read a specific quantification type column out of RSEM quantification files.
+    """
     if patterns is None or len(patterns) == 0:
         return pandas.DataFrame(columns=['gene_id', quantification])
 
