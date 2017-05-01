@@ -34,8 +34,10 @@ def main(cmdline=None):
     gene_sum.name = 'gene_sum'
     ratio = (spike_sum/(spike_sum+gene_sum))*100
     ratio.name = 'ratio'
+    names = make_tube_type_table(args, ratio.index)
 
     df = pandas.DataFrame([gene_sum, spike_sum, ratio]).T
+    df = df.merge(names, left_index=True, right_index=True)
     print(df)
 
     if len(args.pool) > 0:
@@ -88,6 +90,19 @@ def read_quantifications(filenames, rsem, rsem_ids, quantification, sep):
         data.append(current)
 
     return pandas.concat(data, axis=1)
+
+def make_tube_type_table(args, runs):
+    names = []
+    for run_name in runs:
+        if run_name in args.pool:
+            names.append('pool')
+        elif run_name in args.single:
+            names.append('single')
+        else:
+            names.append('NOT DEFINED')
+
+    return pandas.DataFrame(names, columns=['tube_type'], index=runs)
+
     
 if __name__ == '__main__':
     main()
