@@ -46,7 +46,6 @@ def main(cmdline=None):
         single = ratio[args.single]
         print('single mean', single.mean())
 
-    
     if len(args.pool) > 0 and len(args.single) > 0:
         t = ttest_ind(pool, single, equal_var=False)
         
