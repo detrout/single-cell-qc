@@ -39,7 +39,9 @@ def main(cmdline=None):
     if args.output:
         data.to_csv(args.output, sep='\t', index=False)
     else:
-        print(data.to_string())
+        print(data.to_string(index=False))
+
+
 def make_parser():
     parser = argparse.ArgumentParser()
 
