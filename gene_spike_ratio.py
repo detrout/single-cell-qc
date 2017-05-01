@@ -13,7 +13,7 @@ logger = logging.getLogger('gene_spike_ratio')
 def main(cmdline=None):
     parser = make_parser()
     args = parser.parse_args(cmdline)
-    configure_logging(args):
+    configure_logging(args)
 
     if len(args.rsem) != len(args.rsem_library):
         parser.error("every rsem filename must be paired with a library ID")
