@@ -29,8 +29,14 @@ def main(cmdline=None):
     notspikes = ['Spikein' not in x for x in data.index ]
 
     spike_sum = data[spikes].sum(axis=0)
+    spike_sum.name = 'spike_sum'
     gene_sum = data[notspikes].sum(axis=0)
+    gene_sum.name = 'gene_sum'
     ratio = (spike_sum/(spike_sum+gene_sum))*100
+    ratio.name = 'ratio'
+
+    df = pandas.DataFrame([gene_sum, spike_sum, ratio]).T
+    print(df)
 
     if len(args.pool) > 0:
         pool = ratio[args.pool]
