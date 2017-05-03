@@ -141,7 +141,7 @@ chi <- function (data)
     vadj = p.adjust (vchi, method = "bonferroni")
     df   = data.frame(vchi, vadj, run_LR)
 
-    dfp  = df [order (vadj),]
+    dfp  = df [order (vadj,vchi),]
 
     return(dfp)
 }
