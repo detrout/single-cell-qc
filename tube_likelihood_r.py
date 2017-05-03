@@ -104,7 +104,6 @@ optimize <- function(data, run_name)
 
 chi <- function (data) 
 {
-    print(data)
     attach(data)
 
     vchi = 1 - pchisq (LR,1)
@@ -114,20 +113,6 @@ chi <- function (data)
     dfp  = df [order (vadj, vchi),]
 
     return(dfp)
-#    results = 0
-#    for (i in 1:length (vadj))
-#       {
-#       rst <-  c(as.character (dfp$cell_type[i]),
-#                 as.character (dfp$run[i]      ),
-#                 as.character (dfp$vchi[i]     ),
-#                 as.character (dfp$vadj[i]     ),
-#                 as.character (dfp$LR[i]       ))
-#       results[i] = rst
-#
-#       write (rst, file = "chi.tbl",
-#                       ncolumns = 5, append = TRUE, sep = "\t")
-#       }
-#    return(results)
 }
 """)
 
