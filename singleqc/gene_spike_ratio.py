@@ -19,9 +19,9 @@ def main(cmdline=None):
         parser.error("every rsem filename must be paired with a library ID")
 
     data = []
-    data.extend(read_rsem_quantifications(args.rsem, args.rsem_library, args.pool, args.single, args.quantification_name))
-    data.extend(read_combined_quantification(args.combined_pool, 'pool', args.sep))
-    data.extend(read_combined_quantification(args.combined_single, 'single', args.sep))
+    data.extend(compute_ratio_from_rsem(args.rsem, args.rsem_library, args.pool, args.single, args.quantification_name))
+    data.extend(compute_ratio_from_combined(args.combined_pool, 'pool', args.sep))
+    data.extend(compute_ratio_from_combined(args.combined_single, 'single', args.sep))
     data = pandas.DataFrame(data)
     print(data)
 
@@ -85,7 +85,7 @@ def compute_gene_spike_ratios(library_id, quantification, tube_type):
     return s
 
 
-def read_combined_quantification(filenames, tube_type, sep):
+def compute_ratio_from_combined(filenames, tube_type, sep):
     data = []
     for filename in filenames:
         combined = pandas.read_csv(filename, sep=sep, index_col=0)
@@ -97,7 +97,7 @@ def read_combined_quantification(filenames, tube_type, sep):
     return data
 
 
-def read_rsem_quantifications(rsem, library_ids, pool_ids, single_ids, quantification_name):
+def compute_ratio_from_rsem(rsem, library_ids, pool_ids, single_ids, quantification_name):
     data = []
     for filename, library_id in zip(rsem, library_ids):
         current = pandas.read_csv(filename, sep='\t', index_col=0)
