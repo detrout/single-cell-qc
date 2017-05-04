@@ -28,8 +28,8 @@ def main(cmdline=None):
     data.append(pool)
     single = read_rsem_quantifications(args.single, 'single', args.quantification, concentrations)
     data.append(single)
-    data.extend(read_combined_quantifications(args.combined_pool, 'pool', concentrations, sep))
-    data.extend(read_combined_quantifications(args.combined_single, 'single', concentrations, sep))
+    data.extend(read_combined_quantifications(args.combined_pool, 'pool', args.quantification, concentrations, sep))
+    data.extend(read_combined_quantifications(args.combined_single, 'single', args.quantification, concentrations, sep))
     data = pandas.concat(data)
 
     if len(data) == 0:
@@ -72,7 +72,7 @@ def make_parser():
     return parser
 
 
-def read_combined_quantifications(filenames, tube_type, concentrations, sep='\t'):
+def read_combined_quantifications(filenames, tube_type, quantification_name, concentrations, sep):
     """Read several combined quantification files.
 
     this is a gene_id vs library_id tables, if there is a column named "gene_name" it
@@ -80,18 +80,18 @@ def read_combined_quantifications(filenames, tube_type, concentrations, sep='\t'
     """
     data = []
     for filename in filenames:
-        data.append(read_combined_quantification(filename, tube_type, concentrations, sep))
+        data.append(read_combined_quantification(filename, tube_type, quantification_name, concentrations, sep))
 
     return data
 
 
-def read_combined_quantification(filename, tube_type, concentrations, sep='\t'):
+def read_combined_quantification(filename, tube_type, quantification_name, concentrations, sep):
     """Read a combined quantification files gene_id vs library_id
 
     this is a gene_id vs library_id tables, if there is a column named "gene_name" it
     will be ignored.
     """
-    quantifications = pandas.read_csv(filename, sep=sep, header=0, index_col=None)
+    quantifications = pandas.read_csv(filename, sep=sep, header=0)
     quantifications = quantifications.set_index('gene_id')
 
     data = []
@@ -100,32 +100,36 @@ def read_combined_quantification(filename, tube_type, concentrations, sep='\t'):
             logger.info('Ignoring gene_name column')
         else:
             spikes = make_spike_success_table(
-                quantifications[column].to_frame(column), concentrations, column, tube_type)
+                quantifications[column].to_frame(quantification_name), concentrations, quantification_name, column, tube_type)
             data.append(spikes)
 
     return pandas.concat(data)
 
 
-def read_rsem_quantifications(patterns, tube_type, quantification, concentrations):
+def read_rsem_quantifications(patterns, tube_type, quantification_name, concentrations):
     """Read a specific quantification type column out of RSEM quantification files.
     """
     if patterns is None or len(patterns) == 0:
-        return pandas.DataFrame(columns=['gene_id', quantification])
+        df = pandas.DataFrame(columns=[quantification_name])
+        df.index.name = 'gene_id'
+        return df
 
     data = []
     for pattern in patterns:
         filenames = glob(pattern)
         for filename in filenames:
-            rsem = pandas.read_csv(filename, sep='\t', header=0, usecols=['gene_id', quantification])
-            spikes = make_spike_success_table(rsem, concentration, filename, tube_type)
+            rsem = pandas.read_csv(filename, sep='\t', header=0, usecols=['gene_id', quantification_name])
+            rsem = rsem.set_index('gene_id')
+            rsem.columns = [quantification_name]
+            spikes = make_spike_success_table(rsem, concentrations, quantification_name, filename, tube_type)
             data.append(spikes)
 
     return pandas.concat(data)
 
 
-def make_spike_success_table(library_data, concentrations, run_name, tube_type):
+def make_spike_success_table(library_data, concentrations, quantification_name, run_name, tube_type):
     spikes = concentrations.merge(library_data, how='inner', left_index=True, right_index=True)
-    success = spikes[run_name] > 0
+    success = spikes[quantification_name] > 0
     spikes = pandas.DataFrame.assign(spikes,
                                      run=run_name,
                                      tube_type=tube_type,
