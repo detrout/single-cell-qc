@@ -137,6 +137,7 @@ def make_spike_success_table(library_data, concentrations, quantification_name, 
     )
     return spikes
 
+
 def log_likelihood(data, data_runs=None):
     results = []
     if data_runs is None:
