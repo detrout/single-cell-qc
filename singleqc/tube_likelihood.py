@@ -49,15 +49,15 @@ def make_parser():
     parser = argparse.ArgumentParser()
 
     group = parser.add_argument_group('combined quantification file')
-    group.add_argument('--combined-pool', action='append',
+    group.add_argument('--combined-pool', action='append', default=[],
                         help='file with merged pool-split quantifications to read')
-    group.add_argument('--combined-single', action='append',
+    group.add_argument('--combined-single', action='append', default=[],
                         help='file with merge single cell quantifications to read')
 
     group = parser.add_argument_group('raw RSEM files')
-    group.add_argument('-p', '--pool', action='append',
+    group.add_argument('-p', '--pool', action='append', default=[],
                         help='pool-split RSEM quantification files')
-    group.add_argument('-s', '--single', action='append',
+    group.add_argument('-s', '--single', action='append', default=[],
                     help='single-cell RSEM quantification files')
     group.add_argument('-q', '--quantification', default='FPKM',
                         help='Which RSEM quantification column to use')
