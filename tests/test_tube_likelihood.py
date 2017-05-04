@@ -4,11 +4,15 @@ import itertools
 import numpy
 import scipy.misc
 
+from six import StringIO
+
 from rpy2.robjects import r
 from rpy2.robjects import pandas2ri
 pandas2ri.activate()
 
 from singleqc import tube_likelihood, read_concentrations
+
+from tests import get_concentration_filename, get_rsem_filename, make_combined
 
 r("""
 prob <- function (p, success, concentration)
@@ -148,6 +152,28 @@ chi <- function (data)
 """)
 
 class TubeLikelihood(unittest.TestCase):
+    def test_read_rsem_quantifications(self):
+        concentrations = read_concentrations(get_concentration_filename())
+        rsem_file = get_rsem_filename()
+
+        single = tube_likelihood.read_rsem_quantifications(
+            [rsem_file], 'single', 'FPKM', concentrations)
+        self.assertEqual(len(single.columns), 5)
+        self.assertIn('FPKM', single.columns)
+        self.assertEqual(set(single.run), set((rsem_file,)))
+
+    def test_read_combined_quantifications(self):
+        concentrations = read_concentrations(get_concentration_filename())
+        pool_stream = StringIO()
+        make_combined(pool_stream, scale=0.05)
+        pool_stream.seek(0)
+
+        pool = tube_likelihood.read_combined_quantification(pool_stream, 'pool', 'FPKM', concentrations, sep='\t')
+        # columns should be "quantification", 'concentration', 'run', 'success', 'tube_type'
+        self.assertEqual(len(pool.columns), 5)
+        self.assertIn('FPKM', pool.columns)
+        self.assertEqual(set(pool['run']), set([str(x) for x in range(10)]))
+
     def test_prob(self):
         concentrations = [
             0.11, 7.055, 28.219, 56.438, 112.875, 1806
