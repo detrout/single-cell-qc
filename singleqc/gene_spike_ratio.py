@@ -37,6 +37,7 @@ def main(cmdline=None):
         t = ttest_ind(pool, single, equal_var=False)
         print(t)
 
+    return 0
 
 def make_parser():
     parser = argparse.ArgumentParser()
