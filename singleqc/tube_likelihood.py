@@ -209,6 +209,12 @@ def optimize_by(data, likelihoods, name, member, notmember):
 
     run_LR = -2 * (like_tot - (like_non_run + like_run))
 
+    tube_type = data[data['run'] == name]['tube_type']
+    if len(tube_type) > 0:
+        tube_type = tube_type.values[0]
+    else:
+        tube_type = None
+
     return pandas.Series(OrderedDict([
         ('run_name', name),
         ('run_LR', run_LR),
@@ -218,6 +224,7 @@ def optimize_by(data, likelihoods, name, member, notmember):
         ('psmc_non_run', df.vrs.idxmax()),
         ('psmc_run', df.vrp.idxmax()),
         ('psmc_tot', df.vr.idxmax()),
+        ('tube_type', tube_type),
     ]))
 
 def chi(data):
