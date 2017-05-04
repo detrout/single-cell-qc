@@ -8,7 +8,7 @@ from rpy2.robjects import r
 from rpy2.robjects import pandas2ri
 pandas2ri.activate()
 
-import tube_likelihood
+from singleqc import tube_likelihood, read_concentrations
 
 r("""
 prob <- function (p, success, concentration)
