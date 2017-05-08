@@ -198,16 +198,17 @@ class TubeLikelihood(unittest.TestCase):
                     py_answer = tube_likelihood.prob(row, p, K, K_factorial, Threshold)
                     self.assertAlmostEqual(r_answer, py_answer)
 
-#    def test_optimize_pool(self):
-#        data = pandas.read_csv('dump_Mm_purkinje.txt', sep='\t')
-#        r_result = r['optimize_pool'](data)
-#        py_result = tube_likelihood.optimize_by_pool(data)
-#        # this test does assume the order between the two implementations
-#        # stays the same. the pandas dataframe is annotated
-#        # for some reason the R version isnt.
-#        for x, y in zip(r_result, py_result):
-#            self.assertAlmostEqual(x, y)
-#
+    def test_optimize_pool(self):
+        data = pandas.read_csv(get_mm_dump_filename(), sep='\t')
+        r_result = r['optimize_pool'](data)
+        likelihoods = tube_likelihood.compute_log_likelihoods(data)
+        py_result = tube_likelihood.optimize_by_tube_type(data, likelihoods)
+        py_result = py_result[['run_LR',
+                               'like_non_run', 'like_run', 'like_tot',
+                               'psmc_non_run', 'psmc_run', 'psmc_tot']]
+        for x, y in zip(r_result, py_result):
+            self.assertAlmostEqual(x, y)
+
 
     def test_optimize_run(self):
         data = pandas.read_csv(get_mm_dump_filename(), sep='\t', header=0)
