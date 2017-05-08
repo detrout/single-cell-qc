@@ -9,7 +9,6 @@ setup(
     packages = find_packages(),
     package_data={
         'singleqc': [
-            'singleqc/RELEASE-VERSION',
             'singleqc/gspikein.txt'],
     },
     entry_points={
