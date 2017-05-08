@@ -2,18 +2,10 @@ from __future__ import print_function
 
 import os
 from setuptools import setup, find_packages
-from singleqc.version import get_git_version
-
-REQUIREMENTS = "requirements.txt"
-if os.path.exists(REQUIREMENTS):
-    required = open(REQUIREMENTS).readlines()
-else:
-    required = []
-    print("WARNING: Can't find requirements file")
 
 setup(
     name='singleqc',
-    version=get_git_version(),
+    version='0.0',
     packages = find_packages(),
     package_data={
         'singleqc': [
@@ -26,7 +18,11 @@ setup(
             'gene_spike_ratio = singleqc.gene_spike_ratio:main',
         ],
     },
-    install_requires=required,
+    install_requires=[
+        'pandas>=0.18',
+        'statsmodels>=0.6.1',
+        'scipy>=0.18',
+    ],
     tests_require=[
         'py.test',
         'rpy2',
