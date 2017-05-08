@@ -13,6 +13,8 @@ See [[./public-procedure.pdf][public-procedure.pdf]] for the statistical theory.
 
 The following techniques depend on low concentration spike ins.
 
+An example file singleqc/gspikein.txt is provided that corresponds to [[https://www.encodeproject.org/references/ENCSR133ALU/][ENCSR133ALU]]
+
 * tube_likelihood
 
 The tube likelihood program calculates the most likely P_{smc}
