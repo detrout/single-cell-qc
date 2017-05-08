@@ -13,6 +13,10 @@ def get_concentration_filename():
     return pkg_resources.resource_filename('singleqc', 'gspikein.txt')
 
 
+def get_mm_dump_filename():
+    return pkg_resources.resource_filename(__name__, 'dump_mm_purkinje.txt')
+
+
 def make_combined(stream, scale=0.1):
     '''Fill a StringIO with a simulated combined quantification file.
 

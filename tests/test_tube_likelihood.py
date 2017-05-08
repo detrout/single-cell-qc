@@ -12,7 +12,12 @@ pandas2ri.activate()
 
 from singleqc import tube_likelihood, read_concentrations
 
-from tests import get_concentration_filename, get_rsem_filename, make_combined
+from tests import (
+    get_concentration_filename,
+    get_mm_dump_filename,
+    get_rsem_filename,
+    make_combined
+)
 
 r("""
 prob <- function (p, success, concentration)
@@ -205,7 +210,7 @@ class TubeLikelihood(unittest.TestCase):
 #
 
     def test_optimize_run(self):
-        data = pandas.read_csv('dump_Mm_purkinje.txt', sep='\t', header=0)
+        data = pandas.read_csv(get_mm_dump_filename(), sep='\t', header=0)
         run_name = 'p15290'
         r_result = r['optimize'](data, run_name)
         # chump off run_name from r result
