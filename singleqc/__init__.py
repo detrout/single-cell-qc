@@ -3,6 +3,7 @@
 import pandas
 import logging
 
+
 def configure_logging(args):
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)

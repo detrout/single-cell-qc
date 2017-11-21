@@ -15,6 +15,7 @@ from singleqc import configure_logging, read_concentrations
 
 logger = logging.getLogger('tube_likelihood')
 
+
 def main(cmdline=None):
     parser = make_parser()
     args = parser.parse_args(cmdline)
@@ -50,17 +51,17 @@ def make_parser():
 
     group = parser.add_argument_group('combined quantification file')
     group.add_argument('--combined-pool', action='append', default=[],
-                        help='file with merged pool-split quantifications to read')
+                       help='file with merged pool-split quantifications to read')
     group.add_argument('--combined-single', action='append', default=[],
-                        help='file with merge single cell quantifications to read')
+                       help='file with merge single cell quantifications to read')
 
     group = parser.add_argument_group('raw RSEM files')
     group.add_argument('-p', '--pool', action='append', default=[],
-                        help='pool-split RSEM quantification files')
+                       help='pool-split RSEM quantification files')
     group.add_argument('-s', '--single', action='append', default=[],
-                    help='single-cell RSEM quantification files')
+                       help='single-cell RSEM quantification files')
     group.add_argument('-q', '--quantification', default='FPKM',
-                        help='Which RSEM quantification column to use')
+                       help='Which RSEM quantification column to use')
 
     parser.add_argument('-c', '--concentrations', required=True,
                         help='name of file with concentrations for spike ins')
@@ -130,10 +131,11 @@ def read_rsem_quantifications(patterns, tube_type, quantification_name, concentr
 def make_spike_success_table(library_data, concentrations, quantification_name, run_name, tube_type):
     spikes = concentrations.merge(library_data, how='inner', left_index=True, right_index=True)
     success = spikes[quantification_name] > 0
-    spikes = pandas.DataFrame.assign(spikes,
-                                     run=run_name,
-                                     tube_type=tube_type,
-                                     success=success,
+    spikes = pandas.DataFrame.assign(
+        spikes,
+        run=run_name,
+        tube_type=tube_type,
+        success=success,
     )
     return spikes
 
@@ -149,8 +151,9 @@ def log_likelihood(data, data_runs=None):
 
     if len(data.tube_type.unique()) > 1:
         results.append(optimize_by_tube_type(data, likelihoods))
-        
+
     return pandas.DataFrame(results)
+
 
 def prob(row, p, K, K_factorial, Threshold):
     pr_k = row.concentration ** K * 2.71 ** -row.concentration/K_factorial
@@ -162,6 +165,7 @@ def prob(row, p, K, K_factorial, Threshold):
         pr_c_g_k = one_minus_p_k
 
     return (pr_c_g_k * pr_k).sum().clip(min=Threshold)
+
 
 def compute_log_likelihoods(data):
     """Return log likelihoods for [0.0, 1.0, step=.01]
@@ -178,22 +182,25 @@ def compute_log_likelihoods(data):
     vrmatrix = pandas.DataFrame(dict(zip(prob_range, vr)))
     return numpy.log(vrmatrix)
 
+
 def optimize_by_run(data, likelihoods, run_name):
     member = (data['run'] == run_name)
     notmember = (data['run'] != run_name)
     return optimize_by(data, likelihoods, run_name, member, notmember)
+
 
 def optimize_by_tube_type(data, likelihoods):
     member = (data['tube_type'] == 'pool')
     notmember = (data['tube_type'] == 'single')
     return optimize_by(data, likelihoods, 'pool_v_single', member, notmember)
 
+
 def optimize_by(data, likelihoods, name, member, notmember):
     limit = 100
     vr  = []
     vrs = []
     vrp = []
-    
+
     vr = likelihoods.sum(axis=0)
     vr.name = 'vr'
     vrs = likelihoods[notmember].sum(axis=0)
@@ -201,7 +208,7 @@ def optimize_by(data, likelihoods, name, member, notmember):
     vrp = likelihoods[member].sum(axis=0)
     vrp.name = 'vrp'
 
-    df = pandas.concat([vr,vrs,vrp], axis=1)
+    df = pandas.concat([vr, vrs, vrp], axis=1)
 
     like_tot = df.vr.max()
     like_non_run = df.vrs.max()
@@ -218,22 +225,24 @@ def optimize_by(data, likelihoods, name, member, notmember):
     return pandas.Series(OrderedDict([
         ('run_name', name),
         ('run_LR', run_LR),
-        ('like_non_run', like_non_run), #vrs
-        ('like_run', like_run), #vrp
-        ('like_tot', like_tot), #vr
+        ('like_non_run', like_non_run),  # vrs
+        ('like_run', like_run),          # vrp
+        ('like_tot', like_tot),          # vr
         ('psmc_non_run', df.vrs.idxmax()),
         ('psmc_run', df.vrp.idxmax()),
         ('psmc_tot', df.vr.idxmax()),
         ('tube_type', tube_type),
     ]))
 
+
 def chi(data):
     vchi = 1 - scipy.stats.chi2.cdf(data.run_LR, 1)
     reject, vadj, sidak, bonf = multipletests(vchi, method='bonferroni')
     data['vchi'] = vchi
     data['vadj'] = vadj
-    # 
-    return data.sort_values(by=['vadj','vchi', ], kind='mergesort')
-    
+
+    return data.sort_values(by=['vadj', 'vchi'], kind='mergesort')
+
+
 if __name__ == "__main__":
     main()
