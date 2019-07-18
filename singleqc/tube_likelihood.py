@@ -4,8 +4,6 @@ from collections import OrderedDict
 from glob import glob
 import logging
 import numpy
-import os
-import time
 import pandas
 import scipy.misc
 import scipy.stats

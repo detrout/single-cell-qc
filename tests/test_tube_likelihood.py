@@ -1,6 +1,5 @@
 import pandas
 import unittest
-import itertools
 import numpy
 import scipy.misc
 
