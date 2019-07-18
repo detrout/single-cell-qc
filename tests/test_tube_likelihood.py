@@ -164,7 +164,7 @@ class TubeLikelihood(unittest.TestCase):
 
         single = tube_likelihood.read_rsem_quantifications(
             [rsem_file], 'single', 'FPKM', concentrations)
-        self.assertEqual(len(single.columns), 5)
+        self.assertEqual(len(single.columns), 6)
         self.assertIn('FPKM', single.columns)
         self.assertEqual(set(single.run), set((rsem_file,)))
 
@@ -175,8 +175,9 @@ class TubeLikelihood(unittest.TestCase):
         pool_stream.seek(0)
 
         pool = tube_likelihood.read_combined_quantification(pool_stream, 'pool', 'FPKM', concentrations, sep='\t')
-        # columns should be "quantification", 'concentration', 'run', 'success', 'tube_type'
-        self.assertEqual(len(pool.columns), 5)
+        # columns should be 'length', 'concentration', 'quantification',
+        #                   'run', 'tube_type', 'success'
+        self.assertEqual(len(pool.columns), 6)
         self.assertIn('FPKM', pool.columns)
         self.assertEqual(set(pool['run']), set([str(x) for x in range(10)]))
 
