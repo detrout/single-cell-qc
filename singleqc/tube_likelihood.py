@@ -99,7 +99,11 @@ def read_combined_quantification(filename, tube_type, quantification_name, conce
             logger.info('Ignoring gene_name column')
         else:
             spikes = make_spike_success_table(
-                quantifications[column].to_frame(quantification_name), concentrations, quantification_name, column, tube_type)
+                quantifications[column].to_frame(quantification_name),
+                concentrations,
+                quantification_name,
+                column,
+                tube_type)
             data.append(spikes)
 
     return pandas.concat(data)

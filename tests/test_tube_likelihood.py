@@ -174,7 +174,12 @@ class TubeLikelihood(unittest.TestCase):
         make_combined(pool_stream, scale=0.05)
         pool_stream.seek(0)
 
-        pool = tube_likelihood.read_combined_quantification(pool_stream, 'pool', 'FPKM', concentrations, sep='\t')
+        pool = tube_likelihood.read_combined_quantification(
+            pool_stream,
+            'pool',
+            'FPKM',
+            concentrations,
+            sep='\t')
         # columns should be 'length', 'concentration', 'quantification',
         #                   'run', 'tube_type', 'success'
         self.assertEqual(len(pool.columns), 6)
