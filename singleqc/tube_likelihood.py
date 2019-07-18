@@ -90,7 +90,8 @@ def read_combined_quantification(filename, tube_type, quantification_name, conce
     this is a gene_id vs library_id tables, if there is a column named "gene_name" it
     will be ignored.
     """
-    quantifications = pandas.read_csv(filename, sep=sep, header=0)
+    dtype = {'gene_id': str, 'gene_name': str}
+    quantifications = pandas.read_csv(filename, dtype=dtype, sep=sep, header=0)
     quantifications = quantifications.set_index('gene_id')
 
     data = []
