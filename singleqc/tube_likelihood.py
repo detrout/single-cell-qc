@@ -71,7 +71,7 @@ def make_parser():
     return parser
 
 
-def read_combined_quantifications(filenames, tube_type, quantification_name, concentrations, sep):
+def read_combined_quantifications(filenames, tube_type, quantification_name, concentrations, sep=','):
     """Read several combined quantification files.
 
     this is a gene_id vs library_id tables, if there is a column named "gene_name" it
@@ -84,7 +84,7 @@ def read_combined_quantifications(filenames, tube_type, quantification_name, con
     return data
 
 
-def read_combined_quantification(filename, tube_type, quantification_name, concentrations, sep):
+def read_combined_quantification(filename, tube_type, quantification_name, concentrations, sep=','):
     """Read a combined quantification files gene_id vs library_id
 
     this is a gene_id vs library_id tables, if there is a column named "gene_name" it
