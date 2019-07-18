@@ -20,7 +20,7 @@ setup(
     install_requires=[
         'pandas>=0.18',
         'statsmodels>=0.6.1',
-        'scipy>=0.18',
+        'scipy>=1.0',
     ],
     tests_require=[
         'py.test',

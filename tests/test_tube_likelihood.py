@@ -1,7 +1,7 @@
 import pandas
 import unittest
 import numpy
-import scipy.misc
+import scipy.special
 
 from six import StringIO
 
@@ -185,7 +185,7 @@ class TubeLikelihood(unittest.TestCase):
         ]
         succeeded = [0, 1]
         K = numpy.arange(0, 61)
-        K_factorial = scipy.misc.factorial(K)
+        K_factorial = scipy.special.factorial(K)
         Threshold = .000000001
 
         for p in [0.05, 0.25, 0.5, 0.75, 1.0]:

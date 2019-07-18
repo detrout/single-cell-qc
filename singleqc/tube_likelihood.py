@@ -5,7 +5,7 @@ from glob import glob
 import logging
 import numpy
 import pandas
-import scipy.misc
+import scipy.special
 import scipy.stats
 from statsmodels.sandbox.stats.multicomp import multipletests
 
@@ -169,7 +169,7 @@ def compute_log_likelihoods(data):
     """Return log likelihoods for [0.0, 1.0, step=.01]
     """
     K = numpy.arange(0, 61)
-    K_factorial = scipy.misc.factorial(K)
+    K_factorial = scipy.special.factorial(K)
     prob_range = numpy.arange(0.01, 1.01, .01)
     Threshold = .000000001
 
