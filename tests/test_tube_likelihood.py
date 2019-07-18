@@ -164,6 +164,9 @@ class TubeLikelihood(unittest.TestCase):
 
         single = tube_likelihood.read_rsem_quantifications(
             [rsem_file], 'single', 'FPKM', concentrations)
+        self.assertEqual(type(single), list)
+        self.assertEqual(len(single), 1)
+        single = single[0]
         self.assertEqual(len(single.columns), 6)
         self.assertIn('FPKM', single.columns)
         self.assertEqual(set(single.run), set((rsem_file,)))

@@ -24,9 +24,9 @@ def main(cmdline=None):
 
     data = []
     pool = read_rsem_quantifications(args.pool, 'pool', args.quantification, concentrations)
-    data.append(pool)
+    data.extend(pool)
     single = read_rsem_quantifications(args.single, 'single', args.quantification, concentrations)
-    data.append(single)
+    data.extend(single)
     data.extend(read_combined_quantifications(args.combined_pool, 'pool', args.quantification, concentrations, sep))
     data.extend(read_combined_quantifications(args.combined_single, 'single', args.quantification, concentrations, sep))
     data = pandas.concat(data)
@@ -114,9 +114,7 @@ def read_rsem_quantifications(patterns, tube_type, quantification_name, concentr
     """Read a specific quantification type column out of RSEM quantification files.
     """
     if patterns is None or len(patterns) == 0:
-        df = pandas.DataFrame(columns=[quantification_name])
-        df.index.name = 'gene_id'
-        return df
+        return []
 
     data = []
     for pattern in patterns:
@@ -128,7 +126,7 @@ def read_rsem_quantifications(patterns, tube_type, quantification_name, concentr
             spikes = make_spike_success_table(rsem, concentrations, quantification_name, filename, tube_type)
             data.append(spikes)
 
-    return pandas.concat(data)
+    return data
 
 
 def make_spike_success_table(library_data, concentrations, quantification_name, run_name, tube_type):
