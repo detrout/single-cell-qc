@@ -10,7 +10,7 @@ def get_rsem_filename():
 
 def get_concentration_filename():
     '''Return path to the example concentration file'''
-    return pkg_resources.resource_filename('singleqc', 'gspikein.txt')
+    return pkg_resources.resource_filename('singleqc', 'ENCSR535LMC.tsv')
 
 
 def get_mm_dump_filename():
