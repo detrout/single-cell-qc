@@ -197,7 +197,6 @@ def optimize_by_tube_type(data, likelihoods):
 
 
 def optimize_by(data, likelihoods, name, member, notmember):
-    limit = 100
     vr  = []
     vrs = []
     vrp = []
