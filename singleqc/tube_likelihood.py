@@ -93,6 +93,7 @@ def read_combined_quantification(filename, tube_type, quantification_name, conce
     dtype = {'gene_id': str, 'gene_name': str}
     quantifications = pandas.read_csv(filename, dtype=dtype, sep=sep, header=0)
     quantifications = quantifications.set_index('gene_id')
+    quantifications.reindex(concentrations.index)
 
     data = []
     for column in quantifications.columns:
