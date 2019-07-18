@@ -7,7 +7,6 @@ from six import StringIO
 
 from rpy2.robjects import r
 from rpy2.robjects import pandas2ri
-pandas2ri.activate()
 
 from singleqc import tube_likelihood, read_concentrations
 
@@ -17,6 +16,8 @@ from tests import (
     get_rsem_filename,
     make_combined
 )
+
+pandas2ri.activate()
 
 r("""
 prob <- function (p, success, concentration)
