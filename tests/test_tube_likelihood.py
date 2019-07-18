@@ -156,6 +156,7 @@ chi <- function (data)
 }
 """)
 
+
 class TubeLikelihood(unittest.TestCase):
     def test_read_rsem_quantifications(self):
         concentrations = read_concentrations(get_concentration_filename())

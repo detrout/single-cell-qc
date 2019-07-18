@@ -23,7 +23,7 @@ def make_combined(stream, scale=0.1):
     it shifts the quantifications around using a normal distribution
     centered on the example RSEM file, with a width of scale.
 
-    use with 
+    use with
     stream = StringIO()
     make_combined(stream, scale=0.1)
     stream.seek(0)
