@@ -1,0 +1,97 @@
+gene_id	Subpool	original Genbank	Source	Length	GC content	MW	actual concentration (nmol/ul)			
+ERCC-00012	A	DQ883670	 synthesis based on artificial design 	994	0.51	320263	2.07E-05	2.07E-05	2.07E-05	2.07E-05
+ERCC-00003	A	DQ516784	 Methanocaldococcus jannaschii 	1023	0.33	327530	5.22E-06	5.22E-06	5.22E-06	5.22E-06
+ERCC-00170	A	DQ516773	 Methanocaldococcus jannaschii 	1024	0.34	330808	2.58E-06	2.58E-06	2.58E-06	2.58E-06
+ERCC-00079	A	DQ883652	 synthesis based on artificial design 	644	0.49	207757	1.29E-06	1.29E-06	1.29E-06	1.29E-06
+ERCC-00025	A	DQ883689	 synthesis based on artificial design 	1994	0.5	640941	6.47E-07	6.47E-07	6.47E-07	6.47E-07
+ERCC-00035	A	DQ459413	 synthesis based on artificial design 	1130	0.51	364378	3.24E-07	3.24E-07	3.24E-07	3.24E-07
+ERCC-00043	A	DQ516787	 Methanocaldococcus jannaschii 	1023	0.33	330122	1.61E-07	1.61E-07	1.61E-07	1.61E-07
+ERCC-00084	A	DQ883682	 synthesis based on artificial design 	994	0.5	320445	8.08E-08	8.08E-08	8.08E-08	8.08E-08
+ERCC-00060	A	DQ516763	 Methanocaldococcus jannaschii 	523	0.31	168195	4.05E-08	4.05E-08	4.05E-08	4.05E-08
+ERCC-00071	A	DQ883654	 synthesis based on artificial design 	642	0.48	206115	2.03E-08	2.03E-08	2.03E-08	2.03E-08
+ERCC-00077	A	DQ516742	 Methanocaldococcus jannaschii 	273	0.33	87694	1.01E-08	1.01E-08	1.01E-08	1.01E-08
+ERCC-00053	A	DQ516785	 Methanocaldococcus jannaschii 	1023	0.31	327971	5.09E-09	5.09E-09	5.09E-09	5.09E-09
+ERCC-00096	A	DQ459429	 synthesis based on artificial design 	1107	0.51	356565	2.53E-09	2.53E-09	2.53E-09	2.53E-09
+ERCC-00108	A	DQ668365	  synthesis based on Bacillus subtilis genome	1022	0.49	328424	1.27E-09	1.27E-09	1.27E-09	1.27E-09
+ERCC-00126	A	DQ459427	 synthesis based on artificial design 	1119	0.51	359790	3.17E-10	3.17E-10	3.17E-10	3.17E-10
+ERCC-00136	A	EF011063	 synthesis based on Bacillus subtilis genome 	1033	0.42	333363	1.57E-10	1.57E-10	1.57E-10	1.57E-10
+ERCC-00144	A	DQ854995	 synthesis based on artificial design 	538	0.46	173404	7.9E-11	7.9E-11	7.9E-11	7.9E-11
+ERCC-00154	A	DQ854997	 synthesis based on artificial design 	537	0.5	173317	3.94E-11	3.94E-11	3.94E-11	3.94E-11
+ERCC-00162	A	DQ516750	 Methanocaldococcus jannaschii 	523	0.36	166409	2E-11	2E-11	2E-11	2E-11
+ERCC-00002	B	DQ459430	 synthesis based on artificial design 	1061	0.51	341162	2.07E-05	3.11E-05	5.19E-05	8.3E-05
+ERCC-00013	B	EF011062	 synthesis based on Bacillus subtilis genome 	808	0.43	261415	5.16E-06	7.73E-06	1.29E-05	2.06E-05
+ERCC-00061	B	DQ459426	 synthesis based on artificial design 	1136	0.5	366454	2.58E-06	3.87E-06	6.47E-06	1.03E-05
+ERCC-00019	B	DQ883651	 synthesis based on artificial design 	644	0.49	207543	1.29E-06	1.94E-06	3.23E-06	5.16E-06
+ERCC-00028	B	DQ459419	 synthesis based on artificial design 	1130	0.51	364285	6.45E-07	9.69E-07	1.62E-06	2.59E-06
+ERCC-00039	B	DQ883656	 synthesis based on artificial design 	740	0.49	238322	3.24E-07	4.87E-07	8.1E-07	1.29E-06
+ERCC-00044	B	DQ459424	 synthesis based on artificial design 	1156	0.5	372347	1.62E-07	2.43E-07	4.06E-07	6.47E-07
+ERCC-00054	B	DQ516731	 Methanocaldococcus jannaschii 	274	0.37	88966	8.03E-08	1.2E-07	2E-07	3.2E-07
+ERCC-00171	B	DQ854994	 synthesis based on artificial design 	505	0.48	163022	4.04E-08	6.05E-08	1.01E-07	1.61E-07
+ERCC-00073	B	DQ668358	 synthesis based on Bacillus subtilis genome 	603	0.47	193958	2.03E-08	3.04E-08	5.06E-08	8.09E-08
+ERCC-00078	B	DQ883673	 synthesis based on artificial design 	993	0.5	320094	1.01E-08	1.52E-08	2.52E-08	4.03E-08
+ERCC-00085	B	DQ883669	 synthesis based on artificial design 	844	0.49	271323	5.05E-09	7.59E-09	1.26E-08	2.02E-08
+ERCC-00097	B	DQ516758	 Methanocaldococcus jannaschii 	523	0.36	167189	2.55E-09	3.82E-09	6.34E-09	1.02E-08
+ERCC-00109	B	DQ854998	 synthesis based on artificial design 	536	0.46	172925	1.26E-09	1.89E-09	3.15E-09	5.04E-09
+ERCC-00116	B	DQ668367	 synthesis based on Bacillus subtilis genome 	1991	0.5	639986	6.33E-10	9.5E-10	1.58E-09	2.53E-09
+ERCC-00128	B	DQ459428	 synthesis based on artificial design 	1133	0.48	364405	3.16E-10	4.75E-10	7.9E-10	1.27E-09
+ERCC-00137	B	DQ855000	 synthesis based on artificial design 	537	0.5	173218	1.58E-10	2.37E-10	3.94E-10	6.29E-10
+ERCC-00145	B	DQ875386	 synthesis based on Bacillus subtilis genome 	1042	0.44	336179	7.88E-11	1.18E-10	1.97E-10	3.15E-10
+ERCC-00156	B	DQ883643	 synthesis based on artificial design 	494	0.49	159199	3.94E-11	5.92E-11	9.86E-11	1.58E-10
+ERCC-00163	B	DQ668359	 synthesis based on Bacillus subtilis genome 	543	0.47	174949	1.97E-11	2.96E-11	4.93E-11	7.89E-11
+ERCC-00018	C	EF011065	 synthesis based on Bacillus subtilis genome 	1026	0.43	330493	3.39E-05	5.66E-05	9.02E-05	2.26E-05
+ERCC-00014	C	DQ875385	 Methanocaldococcus jannaschii 	1957	0.44	631409	8.46E-06	1.41E-05	2.25E-05	5.64E-06
+ERCC-00022	C	DQ855004	 synthesis based on artificial design 	751	0.47	241178	2.12E-06	3.54E-06	5.68E-06	1.41E-06
+ERCC-00051	C	DQ516740	 Methanocaldococcus jannaschii 	274	0.34	88356	1.06E-06	1.77E-06	2.82E-06	7.05E-07
+ERCC-00040	C	DQ883661	 synthesis based on artificial design 	744	0.53	239738	5.3E-07	8.8E-07	1.41E-06	3.52E-07
+ERCC-00046	C	DQ516748	 Methanocaldococcus jannaschii 	522	0.35	168087	2.65E-07	4.41E-07	7.08E-07	1.77E-07
+ERCC-00062	C	DQ516786	 Methanocaldococcus jannaschii 	1023	0.31	328505	1.33E-07	2.21E-07	3.53E-07	8.86E-08
+ERCC-00057	C	DQ668366	 synthesis based on Bacillus subtilis genome 	1021	0.5	328287	6.64E-08	1.11E-07	1.77E-07	4.42E-08
+ERCC-00074	C	DQ516754	 Methanocaldococcus jannaschii 	522	0.35	167539	3.32E-08	5.53E-08	8.83E-08	2.21E-08
+ERCC-00004	C	DQ516752	 Methanocaldococcus jannaschii 	523	0.34	167216	1.67E-08	2.77E-08	4.44E-08	1.11E-08
+ERCC-00086	C	DQ516791	 Methanocaldococcus jannaschii 	1020	0.32	328632	8.28E-09	1.38E-08	2.2E-08	5.51E-09
+ERCC-00098	C	DQ459415	 synthesis based on artificial design 	1143	0.51	368970	4.12E-09	6.88E-09	1.1E-08	2.74E-09
+ERCC-00111	C	DQ883685	 synthesis based on artificial design 	994	0.47	319359	2.07E-09	3.44E-09	5.51E-09	1.38E-09
+ERCC-00117	C	DQ459412	 synthesis based on artificial design 	1136	0.51	365757	1.03E-09	1.72E-09	2.76E-09	6.89E-10
+ERCC-00130	C	EF011072	 synthesis based on Bacillus subtilis genome 	1059	0.46	342268	5.14E-10	8.59E-10	1.37E-09	3.45E-10
+ERCC-00138	C	DQ516777	 Methanocaldococcus jannaschii 	1022	0.33	231112	3.68E-10	6.14E-10	9.82E-10	2.45E-10
+ERCC-00147	C	DQ516790	 Methanocaldococcus jannaschii 	1023	0.36	331125	1.29E-10	2.14E-10	3.44E-10	8.58E-11
+ERCC-00157	C	DQ839618	 synthesis based on artificial design 	1019	0.5	328635	6.45E-11	1.07E-10	1.72E-10	4.29E-11
+ERCC-00164	C	DQ516779	 Methanocaldococcus jannaschii 	1022	0.37	324758	3.26E-11	5.45E-11	8.74E-11	2.18E-11
+ERCC-00016	D	DQ883664	 synthesis based on artificial design 	844	0.48	271684	5.63E-05	9.05E-05	2.26E-05	3.39E-05
+ERCC-00023	D	DQ516744	 Methanocaldococcus jannaschii 	273	0.31	88186	1.41E-05	2.26E-05	5.62E-06	8.45E-06
+ERCC-00007	D	EF011068	 synthesis based on Bacillus subtilis genome 	1135	0.45	362636	3.56E-06	5.68E-06	1.42E-06	2.13E-06
+ERCC-00033	D	DQ516796	 Methanocaldococcus jannaschii 	2022	0.33	651534	1.77E-06	2.82E-06	7.06E-07	1.06E-06
+ERCC-00041	D	EF011069	 synthesis based on Bacillus subtilis genome 	1123	0.45	363007	8.79E-07	1.4E-06	3.53E-07	5.26E-07
+ERCC-00048	D	DQ883671	 synthesis based on artificial design 	992	0.48	320110	4.4E-07	7.03E-07	1.76E-07	2.64E-07
+ERCC-00067	D	DQ883653	 synthesis based on artificial design 	644	0.47	207451	2.2E-07	3.53E-07	8.82E-08	1.32E-07
+ERCC-00058	D	DQ459418	 synthesis based on artificial design 	1136	0.5	366548	1.1E-07	1.76E-07	4.39E-08	6.6E-08
+ERCC-00075	D	DQ516778	 Methanocaldococcus jannaschii 	1023	0.36	325442	5.59E-08	8.94E-08	2.23E-08	3.35E-08
+ERCC-00081	D	DQ854991	 synthesis based on artificial design 	534	0.49	172323	2.75E-08	4.4E-08	1.1E-08	1.65E-08
+ERCC-00092	D	DQ459425	 synthesis based on artificial design 	1124	0.5	361716	1.38E-08	2.21E-08	5.53E-09	8.27E-09
+ERCC-00112	D	DQ459422	 synthesis based on artificial design 	1136	0.47	364932	6.91E-09	1.1E-08	2.77E-09	4.14E-09
+ERCC-00099	D	DQ875387	 synthesis based on Bacillus subtilis genome 	1350	0.41	434408	3.45E-09	5.52E-09	1.38E-09	2.07E-09
+ERCC-00120	D	DQ854992	 synthesis based on artificial design 	536	0.48	172605	1.72E-09	2.76E-09	6.89E-10	1.03E-09
+ERCC-00131	D	DQ855003	 synthesis based on artificial design 	771	0.47	248276	8.62E-10	1.38E-09	3.45E-10	5.16E-10
+ERCC-00142	D	DQ883646	 synthesis based on artificial design 	493	0.5	159090	4.3E-10	6.85E-10	1.72E-10	2.58E-10
+ERCC-00148	D	DQ883642	 synthesis based on artificial design 	494	0.49	159911	2.14E-10	3.43E-10	8.57E-11	1.29E-10
+ERCC-00158	D	DQ516795	 Methanocaldococcus jannaschii 	1021	0.34	328797	1.08E-10	1.72E-10	4.32E-11	6.45E-11
+ERCC-00165	D	DQ668363	 synthesis based on Bacillus subtilis genome 	872	0.5	279788	5.4E-11	8.65E-11	2.16E-11	3.24E-11
+ERCC-00024	E	DQ854993	 synthesis based on artificial design 	536	0.46	173128	9.01E-05	2.25E-05	3.38E-05	5.63E-05
+ERCC-00017	E	DQ459420	 synthesis based on artificial design 	1136	0.51	367042	2.25E-05	5.64E-06	8.45E-06	1.41E-05
+ERCC-00009	E	DQ668364	 synthesis based on Bacillus subtilis genome 	984	0.47	316584	5.65E-06	1.41E-06	2.12E-06	3.54E-06
+ERCC-00034	E	DQ855001	 synthesis based on artificial design 	1019	0.49	328139	2.82E-06	7.07E-07	1.06E-06	1.76E-06
+ERCC-00042	E	DQ516783	 Methanocaldococcus jannaschii 	1023	0.39	325750	1.43E-06	3.56E-07	5.34E-07	8.93E-07
+ERCC-00031	E	DQ459431	 synthesis based on artificial design 	1138	0.48	365732	7.08E-07	1.77E-07	2.65E-07	4.43E-07
+ERCC-00059	E	DQ668356	 synthesis based on Bacillus subtilis genome 	525	0.48	168750	3.54E-07	8.83E-08	1.33E-07	2.21E-07
+ERCC-00069	E	DQ459421	 synthesis based on artificial design 	1137	0.5	366664	1.76E-07	4.42E-08	6.6E-08	1.1E-07
+ERCC-00076	E	DQ883650	 synthesis based on artificial design 	642	0.5	206436	8.82E-08	2.21E-08	3.31E-08	5.52E-08
+ERCC-00083	E	DQ516780	 Methanocaldococcus jannaschii 	1023	0.35	325668	4.45E-08	1.11E-08	1.67E-08	2.79E-08
+ERCC-00095	E	DQ516759	 Methanocaldococcus jannaschii 	521	0.37	166307	2.22E-08	5.56E-09	8.36E-09	1.39E-08
+ERCC-00104	E	DQ516815	 Methanocaldococcus jannaschii 	2022	0.33	647370	1.11E-08	2.78E-09	4.16E-09	6.94E-09
+ERCC-00168	E	DQ516776	 Methanocaldococcus jannaschii 	1024	0.34	326399	5.58E-09	1.39E-09	2.09E-09	3.49E-09
+ERCC-00113	E	DQ883663	 synthesis based on artificial design 	840	0.5	270697	2.76E-09	6.87E-10	1.03E-09	1.72E-09
+ERCC-00134	E	DQ516739	 Methanocaldococcus jannaschii 	274	0.31	88594	1.38E-09	3.43E-10	5.15E-10	8.58E-10
+ERCC-00143	E	DQ668362	 synthesis based on Bacillus subtilis genome 	784	0.49	251705	6.91E-10	1.73E-10	2.59E-10	4.33E-10
+ERCC-00150	E	DQ883659	 synthesis based on artificial design 	743	0.47	239128	3.45E-10	8.61E-11	1.29E-10	2.15E-10
+ERCC-00160	E	DQ883658	 synthesis based on artificial design 	743	0.46	239437	1.72E-10	4.3E-11	6.47E-11	1.08E-10
+ERCC-00123	E	DQ516782	 Methanocaldococcus jannaschii 	1022	0.36	324911	8.74E-11	2.18E-11	3.26E-11	5.45E-11
