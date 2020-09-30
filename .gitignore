@@ -1,7 +1,5 @@
 *.py[co]*
 *~
 .coverage
-*.csv
-*.tsv
 *.egg-info
 singleqc/RELEASE-VERSION
